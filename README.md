@@ -1,30 +1,13 @@
 1) ./test.curl
 
 
-CREATE TABLE IF NOT EXISTS outbox_events
-(
-    event_id       UUID NOT NULL CONSTRAINT outbox_events_pkey PRIMARY KEY,
-    event_type     VARCHAR,
-    trace_id       UUID NOT NULL,
-    aggregate_id   UUID,
-    aggregate_type VARCHAR,
-    topic          VARCHAR,
-    payload        JSONB,
-    created_by     VARCHAR,
-    created_at     TIMESTAMP,
-    status         VARCHAR
-);
-insert into outbox_events (event_id, event_type, trace_id, aggregate_id, aggregate_type, topic, payload, created_by,
-                           created_at, status)
-values ('6d246cfd-25fd-4b9c-9f2d-dc68fbf15dea','workspace_task_created','83e37e35-a1c9-4632-8c5c-4091f0a0538f','1ab68164-2bbf-401d-bd36-6169c2e305f8'
-,'Workspace','Workspace','{"before":null,"after":{"createdAt":"2022-10-03T10:10:30.410170Z","lastModifiedAt":"2022-10-03T10:10:30.410170Z","createdBy":"SYSTEM","lastModifiedBy":"SYSTEM","name":"TITLE_SEARCH","taskId":"1ab68164-2bbf-401d-bd36-6169c2e305f8","status":"COMPLETED"}}',current_timestamp,current_timestamp,'SENT');
 
 
-CREATE TABLE customers (id TEXT PRIMARY KEY, name TEXT, age INT);
+CREATE TABLE outbox_events (id TEXT PRIMARY KEY, name TEXT, age INT);
 
-INSERT INTO customers (id, name, age) VALUES ('5', 'fred', 34);
-INSERT INTO customers (id, name, age) VALUES ('7', 'sue', 25);
-INSERT INTO customers (id, name, age) VALUES ('2', 'bill', 51);
+INSERT INTO outbox_events (id, name, age) VALUES ('5', 'fred', 34);
+INSERT INTO outbox_events (id, name, age) VALUES ('7', 'sue', 25);
+INSERT INTO outbox_events (id, name, age) VALUES ('2', 'bill', 51);
 
    <!-- docker exec -it postgres /bin/bash -->
 
